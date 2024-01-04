@@ -15,13 +15,11 @@ def pascal_triangle(n):
                 the Pascal’s triangle of n
     """
     ret = []
-    if n <= 0:
+    if n <= 0 or type(n) is not int:
         return ret
 
-    for row in range(n):
-        ret.append([1] * (row + 1))
-
     for i in range(n):
+        ret.append([1] * (i + 1))
         for j in range(1, i):
             ret[i][j] = ret[i - 1][j - 1] + ret[i-1][j]
 
