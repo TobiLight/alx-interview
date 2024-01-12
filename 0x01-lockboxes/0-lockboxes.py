@@ -7,7 +7,9 @@
 # - You can assume all keys will be positive integers:
 # 		- There can be keys that do not have boxes
 # - The first box boxes[0] is unlocked
-
+"""
+Lockboxes module.
+"""
 
 from typing import List
 
