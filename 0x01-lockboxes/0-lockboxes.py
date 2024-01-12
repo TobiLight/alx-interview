@@ -16,15 +16,22 @@ def canUnlockAll(boxes: List[List[int]]) -> bool:
     """
     Returns True if all boxes can be opened, else return False
     """
-    opened_box = {0}
+    # Set to keep track of opened boxes
+    opened_boxes = {0}
+
+    # Queue to explore new boxes
     queue = [0]
 
     while queue:
-        current_box_idx = queue.pop(0)
+        current_box = queue.pop(0)
 
-        for key in boxes[current_box_idx]:
-            if key not in opened_box:
-                opened_box.add(key)
+        # Iterate through keys in the current box
+        for key in boxes[current_box]:
+            if key not in opened_boxes:
+                # Add the new box to the set of opened boxes
+                opened_boxes.add(key)
+                # Add the new box to the queue for further exploration
                 queue.append(key)
 
-    return len(opened_box) == len(boxes)
+    # Check if all boxes can be opened
+    return len(opened_boxes) == len(boxes)
