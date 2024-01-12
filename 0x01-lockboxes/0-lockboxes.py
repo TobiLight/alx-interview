@@ -16,9 +16,14 @@ def canUnlockAll(boxes: List):
     """
     Returns True if all boxes can be opened, else return False
     """
-    key = boxes[0][0]
-    opened = boxes[0]
-    track = {}
-    for suboxes in opened:
-        print(suboxes)
-    return True
+    opened_box = {0}
+    queue = [0]
+
+    while queue:
+        current_box_idx = queue.pop()
+
+        for key in boxes[current_box_idx]:
+            print(key, current_box_idx)
+            if key not in opened_box:
+                opened_box.add(boxes[current_box_idx])
+                queue.append(key)
