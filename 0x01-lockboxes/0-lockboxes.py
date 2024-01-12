@@ -20,6 +20,7 @@ def canUnlockAll(boxes: List[List[int]]) -> bool:
     """
     # Set to keep track of opened boxes
     opened_boxes = set([0])
+
     locked_boxes = set(boxes[0]).difference(set([0]))
     while len(locked_boxes) > 0:
         box_index = locked_boxes.pop()
