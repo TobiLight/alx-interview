@@ -20,11 +20,12 @@ def canUnlockAll(boxes: List):
     queue = [0]
 
     while queue:
-        current_box_idx = queue.pop()
+        current_box_idx = queue.pop(0)
 
         for key in boxes[current_box_idx]:
             if key not in opened_box:
                 opened_box.add(key)
                 queue.append(key)
+            print(opened_box, queue)
 
     return len(opened_box) == len(boxes)
