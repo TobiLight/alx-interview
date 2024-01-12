@@ -12,7 +12,7 @@
 from typing import List
 
 
-def canUnlockAll(boxes: List):
+def canUnlockAll(boxes: List[List[int]]) -> bool:
     """
     Returns True if all boxes can be opened, else return False
     """
