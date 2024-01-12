@@ -25,7 +25,7 @@ def canUnlockAll(boxes: List[List[int]]) -> bool:
     queue = [0]
 
     while queue:
-        current_box = queue.pop(0)
+        current_box = queue.pop()
 
         # Iterate through keys in the current box
         for key in boxes[current_box]:
