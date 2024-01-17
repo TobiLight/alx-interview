@@ -1,0 +1,45 @@
+'''
+Run the command below to execute these test cases.
+python3 -m doctest -v test.txt
+
+Operations path format:
+Character in file: H
+
+>>> minOperations = __import__('0-minoperations').minOperations
+>>> minOperations(0)
+0
+>>> minOperations(-1)
+0
+>>> minOperations(1.4)
+0
+>>> minOperations('1')
+0
+
+>>> minOperations(1)
+0
+
+>>> minOperations(2)
+2
+
+>>> minOperations(4)
+4
+
+>>> minOperations(5)
+5
+
+>>> minOperations(7)
+7
+
+>>> minOperations(11)
+11
+
+>>> minOperations(9)
+6
+
+>>> minOperations(12)
+7
+
+>>> minOperations(15)
+8
+
+'''
