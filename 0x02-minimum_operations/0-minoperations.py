@@ -4,9 +4,6 @@
 """Minimum operations module"""
 
 
-import math
-
-
 def minOperations(n: int) -> int:
     """
     Returns the number of operations to result in exactly n H characters
@@ -25,5 +22,4 @@ def minOperations(n: int) -> int:
         else:
             string = paste(copiedString, string)
             op += 1
-
     return op
