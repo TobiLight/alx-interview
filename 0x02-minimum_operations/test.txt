@@ -42,4 +42,13 @@ Character in file: H
 >>> minOperations(15)
 8
 
+>>> minOperations(8)
+6
+
+>>> minOperations(3)
+3
+
+>>> minOperations(6)
+5
+
 '''
