@@ -21,7 +21,7 @@ def minOperations(n: int) -> int:
         if copied == 0:
             copied = str_len
             str_len += copied
-            op += 2  # copy and paste operations
+            op += 2  # the very first copy and paste operations
         elif n - str_len > 0 and (n - str_len) % str_len == 0:
             copied = str_len
             str_len += copied
