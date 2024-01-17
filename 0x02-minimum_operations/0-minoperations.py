@@ -9,20 +9,24 @@ def minOperations(n: int) -> int:
     Returns the number of operations to result in exactly n H characters
     in the file.
     """
-    string = 'H'
-    def copy(string): return string
-    def paste(str1, str2): return str1 + str2
     op = 0
+    copied = 0
+    string = 'H'
+    str_len = len(string)
 
     if not isinstance(n, int):
         return 0
 
-    while len(string) < n:
-        if n % len(string) == 0:
-            copiedString = copy(string)
-            string = paste(copiedString, string)
-            op += 2
-        else:
-            string = paste(copiedString, string)
-            op += 1
+    while str_len < n:
+        if copied == 0:
+            copied = str_len
+            str_len += copied
+            op += 2  # copy and paste operations
+        elif n - str_len > 0 and (n - str_len) % str_len == 0:
+            copied = str_len
+            str_len += copied
+            op += 2  # copy and paste operations
+        elif copied > 0:
+            str_len += copied
+            op += 1  # paste operation
     return op
