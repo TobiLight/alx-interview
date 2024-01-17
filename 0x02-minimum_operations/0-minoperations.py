@@ -7,7 +7,7 @@
 def minOperations(n: int) -> int:
     """
     Returns the number of operations to result in exactly n H characters
-    in the file.
+    in a file.
     """
     op = 0
     copied = 0
