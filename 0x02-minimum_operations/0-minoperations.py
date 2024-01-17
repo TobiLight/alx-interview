@@ -14,6 +14,9 @@ def minOperations(n: int) -> int:
     def paste(str1, str2): return str1 + str2
     op = 0
 
+    if not isinstance(n, int):
+        return 0
+
     while len(string) < n:
         if n % len(string) == 0:
             copiedString = copy(string)
