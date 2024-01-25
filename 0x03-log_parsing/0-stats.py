@@ -37,6 +37,7 @@ def get_line_details(line: str):
     code, file_size = re.search(
         r' - \[.*\] "GET \/projects\/260 HTTP\/1\.1" (\d+) (\d+)', line)\
         .groups()
+    print(code, file_size)
     return (code, file_size)
 
 
