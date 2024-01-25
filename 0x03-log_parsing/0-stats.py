@@ -58,15 +58,15 @@ try:
                 # increment the code count in codes
                 codes[code] += 1
                 # increment the number of line processed
-                line_processed_count += 1
-                # sum the file size
-                total_file_size += file_size
+            line_processed_count += 1
+            # sum the file size
+            total_file_size += file_size
 
-                # if the lines processed is 10, it's time to print
-                if line_processed_count == 10:
-                    line_processed_count = 0
-                    # print the file size then loop codes
-                    print_stats(total_file_size, codes)
+            # if the lines processed is 10, it's time to print
+            if line_processed_count == 10:
+                line_processed_count = 0
+                # print the file size then loop codes
+                print_stats(total_file_size, codes)
 except KeyboardInterrupt:
     pass
 finally:
