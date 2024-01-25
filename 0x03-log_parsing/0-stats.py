@@ -65,8 +65,6 @@ try:
                     line_processed_count = 0
                     # print the file size then loop codes
                     print_stats(total_file_size, codes)
-        else:
-            print("Nothing for ya")
 except KeyboardInterrupt:
     pass
 finally:
