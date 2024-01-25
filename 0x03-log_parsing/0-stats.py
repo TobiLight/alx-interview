@@ -4,7 +4,7 @@ Module that reads stdin line by line and computes metrics
 """
 import sys
 import re
-from typing import Dict, List, Tuple
+from typing import Dict, Tuple
 
 codes = {
     200: 0,
@@ -30,14 +30,16 @@ def print_stats(total_file_size: int, codes: Dict[int, int]) -> None:
             print("{}: {}".format(key, value))
 
 
-def get_line_details(line: str) -> List[str]:
+def get_line_details(line: str) -> Tuple[str, str]:
     """
     Returns code and file size from line
     """
     # code, file_size = re.search(
     #     r' - \[.*\] "GET \/projects\/260 HTTP\/1\.1" (\d+) (\d+)', line)\
     #     .groups()
-    return line.split(" ")
+    code = line.split(" ")[-2]
+    file_size = line.split(" ")[-1]
+    return (code, file_size)
 
 
 try:
@@ -46,10 +48,8 @@ try:
         line_details = get_line_details(line)
 
         if line_details and len(line_details) > 0:
-            code = line_details[-2]
-            file_size = line_details[-1]
+            code, file_size = line_details
             # check if code is in codes
-            code = int(code)
             file_size = int(file_size)
 
             # if code exists in codes
