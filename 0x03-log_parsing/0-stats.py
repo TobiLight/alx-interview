@@ -38,14 +38,14 @@ try:
     for line in sys.stdin:
         line_details = get_line_details(line)
 
-        if line_details is not None:
+        if line_details:
             code, file_size = line_details
             file_size = int(file_size)
 
             if code in codes.keys():
                 codes[code] += 1
-                line_processed_count += 1
-                total_file_size += file_size
+            line_processed_count += 1
+            total_file_size += file_size
 
         if line_processed_count == 10:
             line_processed_count = 0
