@@ -40,14 +40,13 @@ try:
 
         if line_details and len(line_details) > 0:
             code, file_size = line_details
+            code = int(code)
             file_size = int(file_size)
 
-            if code in codes.keys():  # if code exists in codes
-                codes[code] += 1  # increment the code count in codes
-
-            line_processed_count += 1  # increment the number of line processed
-
-            total_file_size += file_size  # sum the file size
+            if code in codes.keys():
+                codes[code] += 1
+                line_processed_count += 1
+                total_file_size += file_size
 
         if line_processed_count == 10:
             line_processed_count = 0
