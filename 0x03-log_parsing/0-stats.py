@@ -4,7 +4,7 @@ Module that reads stdin line by line and computes metrics
 """
 import sys
 import re
-from typing import Dict, Tuple
+from typing import Dict, Tuple, Union
 
 codes = {'200': 0, '301': 0, '400': 0, '401': 0, '403': 0, '404': 0,
          '405': 0, '500': 0}
@@ -12,7 +12,7 @@ total_file_size = 0
 line_processed_count = 0
 
 
-def print_stats(total_file_size: int, codes: Dict[int, int]) -> None:
+def print_stats(total_file_size: int, codes: Dict[str, int]) -> None:
     """
     Helper function to print the stats from the computed metrics
     """
@@ -22,29 +22,33 @@ def print_stats(total_file_size: int, codes: Dict[int, int]) -> None:
             print("{}: {}".format(key, value))
 
 
-def get_line_details(line: str) -> Tuple[str, str]:
+def get_line_details(line: str) -> Union[Tuple[str, str], None]:
     """
     Returns code and file size from line
     """
+    # code, file_size = re.search(
+    #     r' - \[.*\] "GET \/projects\/260 HTTP\/1\.1" (\d+) (\d+)', line)\
+    #     .groups()
     split = line.split(" ")
-    code = split[-2]
-    file_size = split[-1]
-    return (code, file_size)
+    if len(split) > 2:
+        code = split[-2]
+        file_size = split[-1]
+        return (code, file_size)
+    return None
 
 
 try:
     for line in sys.stdin:
-        line_details = line.split(" ")
+        line_details = get_line_details(line)
 
-        if len(line_details) > 2:
-            code = line_details[-2]
-            file_size = line_details[-1]
+        if line_details is not None:
+            code, file_size = line_details
             file_size = int(file_size)
 
             if code in codes.keys():
                 codes[code] += 1
-            line_processed_count += 1
-            total_file_size += file_size
+                line_processed_count += 1
+                total_file_size += file_size
 
         if line_processed_count == 10:
             line_processed_count = 0
