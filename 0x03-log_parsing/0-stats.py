@@ -34,10 +34,11 @@ def get_line_details(line: str) -> Tuple[str, str]:
 
 try:
     for line in sys.stdin:
-        line_details = get_line_details(line)
+        line_details = line.split(" ")
 
         if line_details and len(line_details) > 0:
-            code, file_size = line_details
+            code = line_details[-2]
+            file_size = line_details[-1]
             file_size = int(file_size)
 
             if code in codes.keys():
