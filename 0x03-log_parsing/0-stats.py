@@ -34,11 +34,10 @@ def get_line_details(line: str):
     """
     Returns ip, code and file size from line
     """
-    ip = re.match(r'(\d+\.\d+\.\d+\.\d+)', line).group()
     code, file_size = re.search(
         r' - \[.*\] "GET \/projects\/260 HTTP\/1\.1" (\d+) (\d+)', line)\
         .groups()
-    return (ip, str(code), str(file_size))
+    return (code, file_size)
 
 
 try:
@@ -47,7 +46,7 @@ try:
         line_details = get_line_details(line)
 
         if line_details and len(line_details) > 0:
-            ip_address, code, file_size = line_details
+            code, file_size = line_details
             # check if code is in codes
             code = int(code)
             file_size = int(file_size)
