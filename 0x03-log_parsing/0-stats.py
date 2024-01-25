@@ -4,38 +4,69 @@ Module that reads stdin line by line and computes metrics
 """
 import sys
 import re
-from typing import Dict, Tuple
+from typing import Dict, List, Tuple
 
-import sys
+codes = {
+    200: 0,
+    301: 0,
+    400: 0,
+    401: 0,
+    403: 0,
+    404: 0,
+    405: 0,
+    500: 0
+}
+total_file_size = 0
+line_processed_count = 0
 
-cache = {'200': 0, '301': 0, '400': 0, '401': 0,
-         '403': 0, '404': 0, '405': 0, '500': 0}
-# Initializes a dict cache with status codes as keys and
-# their counts as values, all set to 0 initially
-total_size = 0
-counter = 0
+
+def print_stats(total_file_size: int, codes: Dict[int, int]) -> None:
+    """
+    Helper function to print the stats from the computed metrics
+    """
+    print("File size: {}".format(total_file_size))
+    for key, value in codes.items():
+        if value > 0:
+            print("{}: {}".format(key, value))
+
+
+def get_line_details(line: str) -> List[str]:
+    """
+    Returns code and file size from line
+    """
+    # code, file_size = re.search(
+    #     r' - \[.*\] "GET \/projects\/260 HTTP\/1\.1" (\d+) (\d+)', line)\
+    #     .groups()
+    return line.split(" ")
+
 
 try:
     for line in sys.stdin:
-        line_list = line.split(" ")
-        if len(line_list) > 4:
-            code = line_list[-2]
-            size = int(line_list[-1])
-            if code in cache.keys():
-                cache[code] += 1
-            total_size += size
-            counter += 1
-        if counter == 10:
-            counter = 0
-            print('File size: {}'.format(total_size))
-            for key, value in sorted(cache.items()):
-                if value != 0:
-                    print('{}: {}'.format(key, value))
-except Exception as err:
-    pass
+        # use regex to get ip, code, and file size from line
+        line_details = get_line_details(line)
 
+        if line_details and len(line_details) > 0:
+            code = line_details[-2]
+            file_size = line_details[-1]
+            # check if code is in codes
+            code = int(code)
+            file_size = int(file_size)
+
+            # if code exists in codes
+            if code in codes.keys():
+                # increment the code count in codes
+                codes[code] += 1
+                # increment the number of line processed
+            line_processed_count += 1
+            # sum the file size
+            total_file_size += file_size
+
+        # if the lines processed is 10, it's time to print
+        if line_processed_count == 10:
+            line_processed_count = 0
+            # print the file size then loop codes
+            print_stats(total_file_size, codes)
+except KeyboardInterrupt:
+    pass
 finally:
-    print('File size: {}'.format(total_size))
-    for key, value in sorted(cache.items()):
-        if value != 0:
-            print('{}: {}'.format(key, value))
+    print_stats(total_file_size, codes)
