@@ -32,7 +32,7 @@ def print_stats(total_file_size: int, codes: Dict[int, int]) -> None:
 
 def get_line_details(line: str):
     """
-    Returns ip, code and file size from line
+    Returns code and file size from line
     """
     code, file_size = re.search(
         r' - \[.*\] "GET \/projects\/260 HTTP\/1\.1" (\d+) (\d+)', line)\
