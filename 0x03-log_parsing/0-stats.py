@@ -24,7 +24,7 @@ def print_stats(total_file_size: int, codes: Dict[str, int]) -> None:
 
 def get_line_details(line: str) -> Union[Tuple[str, str], None]:
     """
-    Returns code and file size from line
+    Returns a tuple of strings - (code, file_size)
     """
     split = line.split(" ")
     if len(split) > 2:
