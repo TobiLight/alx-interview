@@ -50,9 +50,9 @@ try:
                 line_processed_count += 1
                 total_file_size += file_size
 
-        if line_processed_count == 10:
-            line_processed_count = 0
-            print_stats(total_file_size, codes)
+            if line_processed_count == 10:
+                line_processed_count = 0
+                print_stats(total_file_size, codes)
 except KeyboardInterrupt:
     pass
 finally:
