@@ -45,8 +45,8 @@ try:
 
             if code in codes.keys():
                 codes[code] += 1
-                line_processed_count += 1
-                total_file_size += file_size
+            line_processed_count += 1
+            total_file_size += file_size
 
         if line_processed_count == 10:
             line_processed_count = 0
