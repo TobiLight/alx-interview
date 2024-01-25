@@ -30,22 +30,35 @@ def print_stats(total_file_size: int, codes: Dict[int, int]) -> None:
             print("{}: {}".format(key, value))
 
 
+def get_line_details(line: str) -> Tuple[str, str]:
+    """
+    Returns code and file size from line
+    """
+    # code, file_size = re.search(
+    #     r' - \[.*\] "GET \/projects\/260 HTTP\/1\.1" (\d+) (\d+)', line)\
+    #     .groups()
+    split = line.split(" ")
+    code = split[-2]
+    file_size = split[-1]
+    return (code, file_size)
+
+
 try:
     for line in sys.stdin:
         # use regex to get ip, code, and file size from line
-        line_details = line.split(" ")
+        line_details = get_line_details(line)
 
         if line_details and len(line_details) > 0:
-            code = line_details[-2]
-            file_size = line_details[-1]
+            code, file_size = line_details
             # check if code is in codes
+            code = int(code)
             file_size = int(file_size)
 
             # if code exists in codes
             if code in codes.keys():
                 # increment the code count in codes
                 codes[code] += 1
-                # increment the number of line processed
+            # increment the number of line processed
             line_processed_count += 1
             # sum the file size
             total_file_size += file_size
