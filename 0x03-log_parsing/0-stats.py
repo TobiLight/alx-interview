@@ -40,6 +40,7 @@ try:
 
         if line_details and len(line_details) > 0:
             code, file_size = line_details
+            print(type(code))
             code = int(code)
             file_size = int(file_size)
 
