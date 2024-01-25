@@ -36,7 +36,7 @@ try:
     for line in sys.stdin:
         line_details = line.split(" ")
 
-        if line_details and len(line_details) > 0:
+        if line_details and len(line_details) > 4:
             code = line_details[-2]
             file_size = line_details[-1]
             file_size = int(file_size)
