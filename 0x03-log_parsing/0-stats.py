@@ -26,9 +26,6 @@ def get_line_details(line: str) -> Union[Tuple[str, str], None]:
     """
     Returns code and file size from line
     """
-    # code, file_size = re.search(
-    #     r' - \[.*\] "GET \/projects\/260 HTTP\/1\.1" (\d+) (\d+)', line)\
-    #     .groups()
     split = line.split(" ")
     if len(split) > 2:
         code = split[-2]
