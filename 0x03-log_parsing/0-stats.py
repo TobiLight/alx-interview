@@ -50,6 +50,7 @@ try:
             ip_address, code, file_size = line_details
             # check if code is in codes
             code = int(code)
+            file_size = int(file_size)
 
             # if code exists in codes
             if code in codes.keys():
@@ -58,7 +59,7 @@ try:
                 # increment the number of line processed
                 line_processed_count += 1
                 # sum the file size
-                total_file_size += int(file_size)
+                total_file_size += file_size
 
                 # if the lines processed is 10, it's time to print
                 if line_processed_count == 10:
