@@ -3,7 +3,6 @@
 Module that reads stdin line by line and computes metrics
 """
 import sys
-import re
 from typing import Dict, Tuple, Union
 
 codes = {'200': 0, '301': 0, '400': 0, '401': 0, '403': 0, '404': 0,
