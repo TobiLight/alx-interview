@@ -45,28 +45,21 @@ def get_line_details(line: str) -> Tuple[str, str]:
 
 try:
     for line in sys.stdin:
-        # use regex to get ip, code, and file size from line
         line_details = get_line_details(line)
 
         if line_details and len(line_details) > 0:
             code, file_size = line_details
-            # check if code is in codes
-            code = int(code)
             file_size = int(file_size)
 
-            # if code exists in codes
-            if code in codes.keys():
-                # increment the code count in codes
-                codes[code] += 1
-            # increment the number of line processed
-            line_processed_count += 1
-            # sum the file size
-            total_file_size += file_size
+            if code in codes.keys():  # if code exists in codes
+                codes[code] += 1  # increment the code count in codes
 
-        # if the lines processed is 10, it's time to print
+            line_processed_count += 1  # increment the number of line processed
+
+            total_file_size += file_size  # sum the file size
+
         if line_processed_count == 10:
             line_processed_count = 0
-            # print the file size then loop codes
             print_stats(total_file_size, codes)
 except KeyboardInterrupt:
     pass
