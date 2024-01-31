@@ -25,7 +25,7 @@ def validUTF8(data):
                     3 if (byte & 0xF8) == 0xF0 else\
                     0  # Invalid starting byte
         else:
-            if (byte & mask1) == 0 or (byte & mask2) != 0:  # Invalid continuation byte
+            if (byte & mask1) == 0 or (byte & mask2) != 0:
                 return False
             num_bytes -= 1
 
