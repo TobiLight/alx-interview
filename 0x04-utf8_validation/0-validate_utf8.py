@@ -7,33 +7,26 @@ def validUTF8(data):
     Determines if a given data set represents a valid UTF-8 encoding.
     """
     # Count of remaining bytes for the current UTF-8 character
-    remaining_bytes = 0
+    num_bytes = 0
+    mask1 = 1 << 7  # 10000000
+    mask2 = 1 << 6  # 01000000
 
-    for byte in data:
-        # Check if the byte is a continuation byte
-        if remaining_bytes > 0:
-            # Check if the byte starts with '10' as required for a continuation byte
-            if (byte >> 6) == 0b10:
-                remaining_bytes -= 1
-            else:
+    for num in data:
+        byte = num & 0xFF  # Get the last 8 bits
+
+        if num_bytes == 0:
+            if (byte & mask1) == 0:  # Single-byte character (0xxxxxxx)
+                num_bytes = 0
+            elif (byte & mask2) == 0:  # Invalid continuation byte
                 return False
+            else:  # Multi-byte character
+                num_bytes = 1 if (byte & 0xE0) == 0xC0 else\
+                    2 if (byte & 0xF0) == 0xE0 else\
+                    3 if (byte & 0xF8) == 0xF0 else\
+                    0  # Invalid starting byte
         else:
-            # Check the number of bytes for the current UTF-8 character
-            if byte >> 7 == 0:
-                # Single-byte character (0xxxxxxx)
-                remaining_bytes = 0
-            elif byte >> 5 == 0b110:
-                # Two-byte character (110xxxxx 10xxxxxx)
-                remaining_bytes = 1
-            elif byte >> 4 == 0b1110:
-                # Three-byte character (1110xxxx 10xxxxxx 10xxxxxx)
-                remaining_bytes = 2
-            elif byte >> 3 == 0b11110:
-                # Four-byte character (11110xxx 10xxxxxx 10xxxxxx 10xxxxxx)
-                remaining_bytes = 3
-            else:
-                # Invalid leading byte
+            if (byte & mask1) == 0 or (byte & mask2) != 0:  # Invalid continuation byte
                 return False
+            num_bytes -= 1
 
-    # Check if there are remaining bytes after processing all bytes
-    return remaining_bytes == 0
+    return num_bytes == 0
