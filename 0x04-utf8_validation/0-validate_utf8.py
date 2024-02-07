@@ -12,7 +12,7 @@ def validUTF8(data):
     mask2 = 1 << 6  # 01000000
 
     for num in data:
-        byte = num & 0xFF  # Get the last 8 bits
+        byte = num & 255  # Get the last 8 bits
 
         if num_bytes == 0:
             if (byte & mask1) == 0:  # Single-byte character (0xxxxxxx)
@@ -20,7 +20,7 @@ def validUTF8(data):
             elif (byte & mask2) == 0:  # Invalid continuation byte
                 return False
             else:  # Multi-byte character
-                num_bytes = 1 if (byte & 0xE0) == 0xC0 else\
+                num_bytes = 1 if (byte & 224) == 0xC0 else\
                     2 if (byte & 0xF0) == 0xE0 else\
                     3 if (byte & 0xF8) == 0xF0 else\
                     0  # Invalid starting byte
