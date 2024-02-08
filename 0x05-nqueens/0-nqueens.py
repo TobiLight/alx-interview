@@ -26,13 +26,17 @@ def is_safe(board, row, col, N):
 
 
 def solve_nqueens_util(board, row, N):
-    ret = []
+    solutions = []
     # Base case: if all queens are placed, print the solution
     if row == N:
+        print(row)
         for i in range(len(board)):
             if 1 in board[i]:
-                ret.append([i, board[i].index(1)])
-        print(ret)
+                solutions.append([i, board[i].index(1)])
+        # return solutions
+
+    if len(solutions) == N:
+        return solutions
 
     # Try placing queen in each column of this row
     for col in range(N):
@@ -49,7 +53,6 @@ def solve_nqueens_util(board, row, N):
 
 def nqueens(N: int):
     """Solves the N queens problem"""
-
     # Check if N is at least 4
     if N < 4:
         print("N must be at least 4")
@@ -59,7 +62,7 @@ def nqueens(N: int):
     board = [[0 for _ in range(N)] for _ in range(N)]
 
     # Solve the N Queens problem
-    solve_nqueens_util(board, 0, N)
+    print("soll", solve_nqueens_util(board, 0, N))
 
 
 if __name__ == "__main__":
