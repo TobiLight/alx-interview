@@ -8,6 +8,7 @@ import sys
 
 
 def is_safe(board, row, col, N):
+    """Is safe"""
     # Check if there is a queen in the same column
     for i in range(row):
         if board[i][col] == 1:
@@ -26,6 +27,7 @@ def is_safe(board, row, col, N):
 
 
 def solve_nqueens_util(board, row, N):
+    """Solve nqueens utils"""
     solutions = []
 
     # Base case: if all queens are placed, print the solution
