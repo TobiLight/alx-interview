@@ -2,7 +2,7 @@
 # File: 0-nqueens.py
 # Author: Oluwatobiloba Light
 """
-N Queens Puzzle
+N Queens Puzzle placement on NxN chessboard.
 """
 import sys
 
