@@ -33,7 +33,6 @@ def solve_nqueens_util(board, row, N):
             if 1 in board[i]:
                 ret.append([i, board[i].index(1)])
         print(ret)
-        return
 
     # Try placing queen in each column of this row
     for col in range(N):
