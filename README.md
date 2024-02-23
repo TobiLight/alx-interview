@@ -6,3 +6,4 @@
 - **[0x04. UTF-8 Validation](./0x04-utf8_validation/)** - UTF-8 Validation
 - **[0x05. N Queens](./0x05-nqueens/)** - N Queens
 - **[0x06. Star Wars API](./0x06-starwars_api/)** - Star Wars API
+- **[0x07. Rotate 2D Matrix](./0x07-rotate_2d_matrix/)** - Rotate 2D Matrix
