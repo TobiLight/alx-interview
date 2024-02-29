@@ -6,6 +6,7 @@ A function to find the fewest number of coins needed to meet a given
 total amount.
 """
 
+
 def makeChange(coins, total):
     """
     Finds the fewest number of coins needed to meet a given total amount.
