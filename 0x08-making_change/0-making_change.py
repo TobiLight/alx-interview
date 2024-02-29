@@ -6,7 +6,6 @@ A function to find the fewest number of coins needed to meet a given
 total amount.
 """
 
-
 def makeChange(coins, total):
     """
     Finds the fewest number of coins needed to meet a given total amount.
@@ -22,17 +21,15 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
 
-    else:
-        coin = sorted(coins)
-        coin.reverse()
+    sorted_coins = sorted(coins, reverse=True)
+    counter = 0
 
-        counter = 0
+    for coin in sorted_coins:
+        while total >= coin:
+            counter += 1
+            total -= coin
 
-        for i in coin:
-            while total >= coin:
-                counter += 1
-                total -= coin
-        if total == 0:
-            return counter
+    if total == 0:
+        return counter
 
-        return -1
+    return -1
