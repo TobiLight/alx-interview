@@ -18,15 +18,14 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
 
-    sorted_coins = sorted(coins, reverse=True)
-    counter = 0
+    else:
+        sorted_coins = sorted(coins, reverse=True)
+        counter = 0
+        for coin in sorted_coins:
+            while total >= coin:
+                counter += 1
+                total -= coin
+        if total == 0:
+            return counter
 
-    for coin in sorted_coins:
-        while total >= coin:
-            counter += 1
-            total -= coin
-
-    if total == 0:
-        return counter
-
-    return -1
+        return -1
