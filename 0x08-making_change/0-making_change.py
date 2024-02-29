@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 # File: 0-making_change.py
 # Author: Oluwatobiloba Light
+"""
+A function to find the fewest number of coins needed to meet a given
+total amount.
+"""
 
 
 def makeChange(coins, total):
