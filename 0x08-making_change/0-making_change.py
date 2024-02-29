@@ -20,36 +20,36 @@ def makeChange(coins, total):
         or -1 if it cannot be met.
     """
     # Greedy approach
-    # if total <= 0:
-    #     return 0
-
-    # sorted_coins = sorted(coins, reverse=True)
-    # counter = 0
-
-    # for coin in sorted_coins:
-    #     while total >= coin:
-    #         counter += 1
-    #         total -= coin
-
-    # if total == 0:
-    #     return counter
-
-    # return -1
-
-    # Dynamic programming
     if total <= 0:
         return 0
 
-    answers = [float('inf')] * (total + 1)
-    answers[0] = 0
+    sorted_coins = sorted(coins, reverse=True)
+    counter = 0
 
-    for amount in range(1, total + 1):
-        for coin in coins:
-            if amount - coin >= 0:
-                answers[amount] = min(
-                    answers[amount], answers[amount - coin] + 1)
+    for coin in sorted_coins:
+        while total >= coin:
+            counter += 1
+            total -= coin
 
-    if answers[total] != float('inf'):
-        return answers[total]
+    if total == 0:
+        return counter
 
     return -1
+
+    # Dynamic programming
+    # if total <= 0:
+    #     return 0
+
+    # answers = [float('inf')] * (total + 1)
+    # answers[0] = 0
+
+    # for amount in range(1, total + 1):
+    #     for coin in coins:
+    #         if amount - coin >= 0:
+    #             answers[amount] = min(
+    #                 answers[amount], answers[amount - coin] + 1)
+
+    # if answers[total] != float('inf'):
+    #     return answers[total]
+
+    # return -1
