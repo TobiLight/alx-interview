@@ -22,10 +22,9 @@ def makeChange(coins, total):
     counter = 0
 
     for coin in sorted_coins:
-        while total >= coin and total != 0:
+        while total >= coin:
             counter += 1
             total -= coin
-
-        if total == 0:
-            return counter
+    if total == 0:
+        return counter
     return -1
