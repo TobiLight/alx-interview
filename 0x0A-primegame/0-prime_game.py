@@ -34,9 +34,9 @@ def isWinner(x, nums):
     #             if not any(n % 2 != 0 for n in nums):
     #                 ben_wins += 1
 
-    n = max(nums)
+    n_max = max(nums)
 
-    primes = [True for _ in range(1, n + 1, 1)]
+    primes = [True for _ in range(1, n_max + 1, 1)]
 
     primes[0] = False
 
@@ -44,11 +44,11 @@ def isWinner(x, nums):
         if i == 1 or not is_prime:
             continue
 
-        for j in range(i + i, n + 1, i):
+        for j in range(i + i, n_max + 1, i):
             primes[j - 1] = False
 
-    for _, n in zip(range(x), nums):
-        primes_count = len(list(filter(lambda x: x, primes[0: n])))
+    for _, n_max in zip(range(x), nums):
+        primes_count = len(list(filter(lambda x: x, primes[0: n_max])))
 
         ben_wins += primes_count % 2 == 0
 
