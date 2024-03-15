@@ -28,10 +28,11 @@ def isWinner(x, nums):
         if num % 2 == 0:
             ben_wins += 1
         else:
-            if len(nums) > 0 and nums[0] == num + 1:
+            if len(nums) > 0 and nums[0] == (num + 1):
                 maria_wins += 1
             else:
-                ben_wins += 1
+                if not any(n % 2 != 0 for n in nums):
+                    ben_wins += 1
 
     if maria_wins > ben_wins:
         return "Maria"
