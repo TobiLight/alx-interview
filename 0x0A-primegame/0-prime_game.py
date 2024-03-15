@@ -6,7 +6,7 @@
 
 def isWinner(x, nums):
     """
-    This function determines the winner of the game based on the number of 
+    This function determines the winner of the game based on the number of
     rounds (x) and the starting number set (nums) for each round.
 
     Args:
