@@ -46,7 +46,7 @@ def prime_game_winner(n):
                 dp[i] = True
                 break
 
-    return "Maria" if dp[n] else "Ben"
+    return "Ben" if dp[n] else "Maria"
 
 
 def isWinner(x, nums):
