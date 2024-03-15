@@ -17,6 +17,8 @@ def isWinner(x, nums):
         str: Name of the player who wins the most rounds ("Maria" or "Ben")
              None: If the winner cannot be determined (both win equal rounds)
     """
+    if x < 1 or not nums:
+        return None
     maria_wins = ben_wins = 0
     for _ in range(x):
         num = nums.pop(0)
