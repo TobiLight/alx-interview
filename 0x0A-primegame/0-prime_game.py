@@ -48,7 +48,7 @@ def isWinner(x, nums):
             primes[j - 1] = False
 
     for _, n_max in zip(range(x), nums):
-        primes_count = len(list(filter(lambda x: x, primes[0: n_max])))
+        primes_count = len(list(filter(lambda x: x, primes[0:n_max])))
 
         ben_wins += primes_count % 2 == 0
 
